@@ -1,4 +1,4 @@
-FROM ubuntu:12.04
+FROM ursuvictor/ursuvictor-base:latest
 
 MAINTAINER Leonid Makarov <leonid.makarov@blinkreaction.com>
 
