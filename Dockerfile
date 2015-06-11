@@ -1,10 +1,15 @@
-FROM ursuvictor/ursuvictor-base:latest
+FROM ubuntu:12.04
 
-VOLUME ["/Users/victorursu/tmp", "/var/www"]
+MAINTAINER Victor Ursu version: 0.1
 
-# Set timezone and locale.
-RUN locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
-ENV MIKE MCM
+RUN apt-get update && apt-get install -y apache2 && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOG_DIR /var/log/apache2
+
+EXPOSE 80
+
+CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
+
+VOLUME ["/var/www"]
