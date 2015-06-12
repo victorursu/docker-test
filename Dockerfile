@@ -3,8 +3,9 @@ FROM ubuntu:12.04
 MAINTAINER Victor Ursu version: 0.1
 
 # PROGRAMS
-RUN apt-get update && apt-get install -y apache2 && apt-get clean && rm -rf /var/lib/apt/lists/*
-
+RUN apt-get update -y
+RUN apt-get install -y apache2
+RUN apt-get install libapache2-mod-auth-mysql php5-mysql -y
 RUN apt-get install -y python-markdown
 RUN apt-get install -y git-core vim zsh
 RUN apt-get install -y git
@@ -19,7 +20,10 @@ RUN apt-get install -y build-essential
 RUN apt-get install -y tcpdump
 RUN apt-get install -y screen
 RUN apt-get install -y nano
-
+RUN apt-get update \
+ && apt-get install -y mysql-server \
+ && rm -rf /var/lib/mysql/mysql \
+ && rm -rf /var/lib/apt/lists/*
 
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
