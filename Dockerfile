@@ -18,6 +18,7 @@ RUN apt-get install -y cmake
 RUN apt-get install -y build-essential
 RUN apt-get install -y tcpdump
 RUN apt-get install -y screen
+RUN apt-get install -y nano
 
 
 ENV APACHE_RUN_USER www-data
