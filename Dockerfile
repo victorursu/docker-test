@@ -5,7 +5,7 @@ MAINTAINER Victor Ursu version: 0.1
 # PROGRAMS
 RUN apt-get update -y
 RUN apt-get install -y apache2
-RUN apt-get install libapache2-mod-auth-mysql php5-mysql -y
+RUN apt-get install -y libapache2-mod-auth-mysql php5-mysql
 RUN apt-get install -y python-markdown
 RUN apt-get install -y git-core vim zsh
 RUN apt-get install -y git
