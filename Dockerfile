@@ -22,3 +22,5 @@ VOLUME ["/var/www"]
 # Add image configuration and scripts
 ADD run.sh /run.sh
 RUN chmod 755 /*.sh
+
+CMD ["/run.sh"]
