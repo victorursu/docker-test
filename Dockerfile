@@ -12,6 +12,11 @@ ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 ENV MEMCACHED_MEMORY_LIMIT 128
 
+# SSH settigns
+COPY config/.ssh /root/.ssh
+# Drush settings
+COPY config/.drush /root/.drush
+
 EXPOSE 80
 
 CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
