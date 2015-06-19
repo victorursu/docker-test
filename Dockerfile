@@ -16,11 +16,18 @@ EXPOSE 80
 
 CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
 
-RUN mkdir -p /root/.ssh
-RUN cp /var/my-app/id_rsa /root/.ssh/id_rsa
-RUN chmod 600 /root/.ssh/id_rsa
-RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
-RUN git clone git@github.com:pfizer/platforms.git
-
-
 VOLUME ["/var/www"]
+
+# Make ssh dir
+RUN mkdir /root/.ssh/
+
+# Copy over private key, and set permissions
+ADD id_rsa /root/.ssh/id_rsa
+
+# Create known_hosts
+RUN touch /root/.ssh/known_hosts
+# Add bitbuckets key
+RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
+
+# Clone the conf files into the docker container
+RUN git clone git@github.com:pfizer/platforms.git
