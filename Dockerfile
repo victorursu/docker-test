@@ -16,4 +16,11 @@ EXPOSE 80
 
 CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
 
+RUN mkdir -p /root/.ssh
+RUN cp /var/my-app/id_rsa /root/.ssh/id_rsa
+RUN chmod 600 /root/.ssh/id_rsa
+RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
+RUN git clone git@github.com:pfizer/platforms.git
+
+
 VOLUME ["/var/www"]
