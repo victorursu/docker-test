@@ -15,6 +15,10 @@ ENV MEMCACHED_MEMORY_LIMIT 128
 
 EXPOSE 80
 
-CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
+# CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
 
 VOLUME ["/var/www"]
+
+# Add image configuration and scripts
+ADD run.sh /run.sh
+RUN chmod 755 /*.sh
